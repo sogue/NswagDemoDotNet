@@ -29,4 +29,12 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+    
+    [HttpGet("DownloadForecastReport")]
+    [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
+    public IActionResult DownloadForecastReport()
+    {
+        var reportData = System.Text.Encoding.UTF8.GetBytes("Sample report data…");
+        return File(reportData, "application/octet-stream", "ForecastReport.txt");
+    }
 }
